@@ -8,7 +8,13 @@ def gestionare_obiect(id, nume, descriere, pret, locatie):
     :param locatie: string
     :return: un dictionar reprezentand inventarul unei institutii
     '''
-    return [id,nume,descriere,pret,locatie]
+    return{
+        "id": id,
+        "nume": nume,
+        "descriere": descriere,
+        "pret": pret,
+        "locatie": locatie
+    }
 
 def get_id(obiect):
     '''
@@ -16,7 +22,7 @@ def get_id(obiect):
     :param obiect: dictionar ce contine un obiect
     :return: id-ul obiectului
     '''
-    return obiect[0]
+    return obiect["id"]
 
 def get_nume(obiect):
     '''
@@ -24,7 +30,7 @@ def get_nume(obiect):
     :param obiect: dictionar ce contine un obiect
     :return: numele obiectului
     '''
-    return obiect[1]
+    return obiect["nume"]
 
 def get_descriere(obiect):
     '''
@@ -32,7 +38,7 @@ def get_descriere(obiect):
     :param obiect: dictionar ce contine un obiect
     :return: descrierea obiectului
     '''
-    return obiect[2]
+    return obiect["descriere"]
 
 def get_pret(obiect):
     '''
@@ -40,7 +46,7 @@ def get_pret(obiect):
     :param obiect: dictionar ce contine un obiect
     :return: pretul obiectului
     '''
-    return obiect[3]
+    return obiect["pret"]
 
 def get_locatie(obiect):
     '''
@@ -48,7 +54,7 @@ def get_locatie(obiect):
     :param obiect: dictionar ce contine un obiect
     :return: locatia obiectului
     '''
-    return obiect[4]
+    return obiect["locatie"]
 
 def to_string(obiect):
     return "id: {}, nume: {}, descriere: {}, pret: {}, locatie: {}".format(
