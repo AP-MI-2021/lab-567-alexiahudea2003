@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from Domain.inventar import gestionare_obiect, get_id, get_nume, get_descriere, get_pret, get_locatie
 
 def mutare_obiect(locatie_noua, lista):
@@ -28,6 +27,3 @@ def concatenare_string(valoarea, string, lista):
         else:
             lista_noua.append(obiect)
     return lista_noua
-=======
-
->>>>>>> 82c7e7dc4ed902869a0909b37fad25769c020ec9
