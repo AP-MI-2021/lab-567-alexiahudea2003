@@ -14,11 +14,11 @@ def mutare_obiect(locatie_noua, lista):
 
 def concatenare_string(valoarea, string, lista):
     '''
-
-    :param valoarea:
-    :param string:
-    :param lista:
-    :return:
+    concatenarea unui string in functie de valoarea data
+    :param valoarea: float
+    :param string: string
+    :param lista: lista obiecte
+    :return: concatenare string
     '''
     lista_noua = []
     for obiect in lista:
