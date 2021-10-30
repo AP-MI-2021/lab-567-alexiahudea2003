@@ -8,3 +8,4 @@ def test_obiect():
     assert get_descriere(obiect) == "alba"
     assert get_pret(obiect) == 300
     assert get_locatie(obiect) == "amfiteatru"
+    
