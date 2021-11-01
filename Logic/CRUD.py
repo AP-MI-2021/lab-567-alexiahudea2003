@@ -10,6 +10,10 @@ def adauga_obiect(id, nume, descriere, pret, locatie, lista):
     :param locatie: string
     :return: o lista continand atat elemente vechi, cat si noul obiect
     '''
+    if get_by_id(id, lista) is not None:
+        raise ValueError("id existent")
+    if pret < 0 :
+        raise ValueError("pret negativ")
     obiect = gestionare_obiect(id, nume, descriere, pret, locatie)
     return lista + [obiect]
 
@@ -32,6 +36,8 @@ def sterge_obiect(id, lista):
     :param lista: lista de obiecte
     :return: o lista de obiecte fara elementul cu id dat
     '''
+    if get_by_id(id,lista) is None:
+        raise ValueError("nu exista")
     return [obiect for obiect in lista if get_id(obiect) != id]
 
 def modifica_obiect(id, nume, descriere, pret, locatie, lista):
@@ -45,6 +51,8 @@ def modifica_obiect(id, nume, descriere, pret, locatie, lista):
     :param lista: lista de obiecte
     :return: lista modificata
     '''
+    if get_by_id(id,lista) is None:
+        raise ValueError("nu exista")
     lista_noua = []
     for obiect in lista:
         if get_id(obiect) == id:
