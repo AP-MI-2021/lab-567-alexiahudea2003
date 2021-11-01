@@ -63,3 +63,4 @@ def test_modifica_obiect():
     assert get_descriere(obiect_neupdatat) == "alba"
     assert get_pret(obiect_neupdatat) == 300
     assert get_locatie(obiect_neupdatat) == "sala"
+
