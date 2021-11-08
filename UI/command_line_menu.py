@@ -47,4 +47,3 @@ def meniu():
         else:
             print("Optiune gresita")
 meniu()
-

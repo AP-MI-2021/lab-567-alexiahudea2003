@@ -26,7 +26,7 @@ def get_id(obiect):
 
 def get_nume(obiect):
     '''
-    da numele unui obiect
+    da numele unui obiect din inventar
     :param obiect: dictionar ce contine un obiect
     :return: numele obiectului
     '''

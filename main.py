@@ -1,10 +1,9 @@
-
-
 from Tests.test_all import run_all_tests
-from UI.command_line_menu import meniu
+from UI.console import run_menu
+from Logic.CRUD import adauga_obiect
 
 def main():
     run_all_tests()
-    meniu([])
+    lista = []
+    run_menu(lista)
 main()
-
