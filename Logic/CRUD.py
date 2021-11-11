@@ -57,8 +57,11 @@ def modifica_obiect(id, nume, descriere, pret, locatie, lista):
         raise ValueError("pretul nu poate fi negativ")
     if len(locatie) !=4:
         raise ValueError("locatia are mai mai mult sau mai putin de 4 caractere")
+<<<<<<< HEAD
     if get_by_id(id,lista) is None:
         raise ValueError("nu exista")
+=======
+>>>>>>> 0abe628d5eac2681fc158c926964e5df6b72a16d
     lista_noua = []
     for obiect in lista:
         if get_id(obiect) == id:

@@ -62,4 +62,7 @@ def test_suma_preturi():
     assert len(rezultat) == 1
     assert rezultat["s203"] == 600
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0abe628d5eac2681fc158c926964e5df6b72a16d
