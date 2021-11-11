@@ -62,17 +62,4 @@ def test_suma_preturi():
     assert len(rezultat) == 1
     assert rezultat["s203"] == 600
 
-def test_undo_redo():
-    lista = []
-    undo_list = []
-    redo_list = []
-    lista = adauga_obiect("1", "tabla", "alba", 300, "s203", lista)
-    undo_list.append(lista)
-    lista = adauga_obiect("2", "scaun", "lemn", 200, "s203", lista)
-    undo_list.append(lista)
-    lista = adauga_obiect("3", "ceas", "digital", 100, "s203", lista)
-    undo_list.append(lista)
-    
-
-
 

@@ -35,8 +35,9 @@ def test_undo_redo():
 
     redo_list.clear()
     lista = undo_list.pop()
-    assert undo_list == [["1", "tabla", "alba", 300, "s203"],
-                         []]
+    assert undo_list == [[],
+                         [["1", "tabla", "alba", 300, "s203"]]]
+
 
     redo_list.append(lista)
     lista = undo_list.pop()
@@ -58,7 +59,7 @@ def test_undo_redo():
     lista = rezultat
     redo_list.clear()
     assert redo_list == []
-    assert lista == [["4", "telefon", "fix", 150, "s203", lista]]
+    assert lista == [["4", "telefon", "fix", 150, "s203"]]
 
     rezultat = adauga_obiect("5", "macbook", "air", 5500, "s203", lista)
     undo_list.append(lista)
@@ -79,10 +80,10 @@ def test_undo_redo():
     assert len(redo_list) == 0
 
     if len(undo_list) > 0:
-        redo_list.appnd(lista)
+        redo_list.append(lista)
         lista = undo_list.pop()
-    assert undo_list == [["4", "telefon", "fix", 150, "s203", lista],
-                         []]
+    assert undo_list == [[],
+                         [["4", "telefon", "fix", 150, "s203"]]]
 
     if len(undo_list) > 0:
         redo_list.append(lista)
@@ -98,11 +99,13 @@ def test_undo_redo():
         undo_list.append(lista)
         lista = redo_list.pop()
     assert len(redo_list) == 0
+
     if len(undo_list) > 0:
         redo_list.append(lista)
     lista = undo_list.pop()
-    assert undo_list == [["4", "telefon", "fix", 150, "s203", lista],
-                         []]
+    assert undo_list == [[],
+                         [["4", "telefon", "fix", 150, "s203"]]]
+
 
     if len(undo_list) > 0:
         redo_list.append(lista)
@@ -117,7 +120,7 @@ def test_undo_redo():
     if len(redo_list) > 0:
         undo_list.append(lista)
         lista = redo_list.pop()
-    assert undo_list == [[["4", "telefon", "fix", 150, "s203"]],[]]
+    assert undo_list == [[], [["4", "telefon", "fix", 150, "s203"]]]
 
     if len(undo_list) > 0:
         redo_list.append(lista)
@@ -143,8 +146,6 @@ def test_undo_redo():
         lista = redo_list.pop()
     assert len(redo_list) == 0
 
-    '''test concatenare'''
-
     rezultat = concatenare_string(33, "nou", lista)
     undo_list.append(lista)
     redo_list.clear()
@@ -159,53 +160,12 @@ def test_undo_redo():
     assert lista == [["4", "telefon", "fixnouout", 150, "s203"],
                      ["7", "casti", "beatsnouout", 750, "s203"]]
 
-    rezultat = concatenare_string(11, "stock", lista)
-    undo_list.append(lista)
-    redo_list.clear()
-    lista = rezultat
-    if len(undo_list) > 0:
-        redo_list.append(lista)
-        lista = undo_list.pop()
-    assert undo_list == [[],
-                         [["4", "telefon", "fix", 150, "s203"]],
-                         [["4", "telefon", "fix", 150, "s203"]],
-                         [["7", "casti", "beats", 750, "s203"]],
-                         [["4", "telefon", "fixnou", 150, "s203"]],
-                         [["7", "casti", "beatsnou", 750, "s203"]]]
-
-    if len(undo_list) > 0:
-        redo_list.append(lista)
-        lista = undo_list.pop()
-    assert undo_list == [[],
-                         [["4", "telefon", "fix", 150, "s203"]],
-                         [["7", "casti", "beatsnou", 750, "s203"]]]
-    if len(undo_list) > 0:
-        redo_list.append(lista)
-        lista = undo_list.pop()
-    assert undo_list == [[],
-                         [["4", "telefon", "fix", 150, "s203"]],
-                         [["4", "telefon", "fix", 150, "s203"]],
-                         [["7", "casti", "beatsnou", 750, "s203"]]]
-
-    if len(undo_list) > 0:
-        redo_list.append(lista)
-        lista = undo_list.pop()
-    assert undo_list == [[],
-                         ["4", "telefon", "fix", 150, "s203"]]
-
-    if len(undo_list) > 0:
-        redo_list.append(lista)
-        lista = undo_list.pop()
-    assert undo_list == []
-
-    '''test mutare obiect'''
-
-    rezultat = adauga_obiect("1", "apple", "telefon", 6000, "s203")
+    rezultat = adauga_obiect("1", "apple", "telefon", 6000, "s203",lista)
     undo_list.append(lista)
     redo_list.append(lista)
     lista = rezultat
 
-    rezultat = adauga_obiect("2", "apple", "macbook", 7000, "s203")
+    rezultat = adauga_obiect("2", "apple", "macbook", 7000, "s203",lista)
     undo_list.append(lista)
     redo_list.append(lista)
     lista = rezultat
@@ -224,39 +184,3 @@ def test_undo_redo():
     undo_list.append(lista)
     redo_list.clear()
     lista = rezultat
-
-    if len(undo_list) > 0:
-        redo_list.append(lista)
-        lista = undo_list.pop()
-    assert undo_list == [[],
-                         [["1", "apple", "telefon", 6000, "s203"]],
-                         [["1", "apple", "telefon", 6000, "s203"]],
-                         [["2", "apple", "macbook", 7000, "s203"]],
-                         [["1", "apple", "telefon", 6000, "s204"]],
-                         [["2", "apple", "macbook", 7000, "s203"]],
-                         ]
-
-    if len(undo_list) > 0:
-        redo_list.append(lista)
-        lista = undo_list.pop()
-    assert undo_list == [[],
-                         [["1", "apple", "telefon", 6000, "s203"]],
-                         [["1", "apple", "telefon", 6000, "s203"]],
-                         [["2", "apple", "macbook", 7000, "s203"]]]
-
-    if len(redo_list) > 0:
-        undo_list.append(lista)
-        lista = redo_list.pop()
-    assert redo_list == [[["1", "apple", "telefon", 6000, "s205"]],
-                         [["2", "apple", "macbook", 7000, "s203"]]]
-
-
-
-
-
-
-
-
-
-
-
