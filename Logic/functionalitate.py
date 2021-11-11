@@ -1,7 +1,7 @@
 from Domain.inventar import gestionare_obiect, get_id, get_nume, get_descriere, get_pret, get_locatie
 
 
-def mutare_obiect(locatie_noua, lista, undo_list, redo_list):
+def mutare_obiect(locatie_noua, lista):
     '''
     mutarea obiectelor intr-o locatie data
     :param locatie_noua: string
@@ -11,11 +11,9 @@ def mutare_obiect(locatie_noua, lista, undo_list, redo_list):
     lista_noua = []
     for obiect in lista:
         lista_noua.append(gestionare_obiect(get_id(obiect), get_nume(obiect), get_descriere(obiect), get_pret(obiect), locatie_noua))
-    undo_list.append(lista)
-    redo_list.clear()
     return lista_noua
 
-def concatenare_string(valoarea, string, lista, undo_list, redo_list):
+def concatenare_string(valoarea, string, lista):
     '''
     concatenarea unui string in functie de valoarea data
     :param valoarea: float
@@ -29,8 +27,6 @@ def concatenare_string(valoarea, string, lista, undo_list, redo_list):
             lista_noua.append(gestionare_obiect(get_id(obiect), get_nume(obiect), get_descriere(obiect) + string, get_pret(obiect), get_locatie(obiect)))
         else:
             lista_noua.append(obiect)
-    undo_list.append(lista)
-    redo_list.clear
     return lista_noua
 
 def pret_max(lista):
@@ -50,14 +46,12 @@ def pret_max(lista):
             rezultat[locatie] = pret
     return rezultat
 
-def ordonare_obiecte(lista, undo_list, redo_list):
+def ordonare_obiecte(lista):
     '''
     ordoneaza obiectele crescator dupa pret
     :param lista: lista obiecte
     :return: ordonarea obiectelor dupa pret
     '''
-    undo_list.append(lista)
-    redo_list.clear()
     return sorted(lista, key = lambda obiect: get_pret(obiect))
 
 def suma_preturi(lista):
@@ -69,23 +63,9 @@ def suma_preturi(lista):
     rezultat = {}
     for obiect in lista:
         locatie = get_locatie(obiect)
-        pret = get_pret(obiect)
         if locatie in rezultat:
-            rezultat[locatie] = rezultat[locatie] + pret
+            rezultat[locatie] = rezultat[locatie] + get_pret(obiect)
         else:
-            rezultat[locatie] = pret
+            rezultat[locatie] = get_pret(obiect)
     return rezultat
 
-def Undo(lista, undo_list, redo_list):
-    if len(undo_list) > 0:
-        redo_list.append(lista)
-        lista = undo_list.pop()
-    else:
-        return None
-    return lista
-
-def Redo(lista, undo_list, redo_list):
-    if len(redo_list) > 0:
-        undo_list.append(lista)
-        lista = redo_list.pop
-    return lista

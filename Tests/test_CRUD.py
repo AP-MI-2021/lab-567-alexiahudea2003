@@ -54,3 +54,4 @@ def test_modifica_obiect():
     assert get_pret(obiect_neupdatat) == 300
     assert get_locatie(obiect_neupdatat) == "s203"
 
+

@@ -11,30 +11,12 @@ def adauga_obiect(id, nume, descriere, pret, locatie, lista):
     :return: o lista continand atat elemente vechi, cat si noul obiect
     '''
     if get_by_id(id, lista) is not None:
-        raise ValueError("id existent")
-    if pret < 0 :
-        raise ValueError("pret negativ")
+        raise ValueError("id-ul exista deja")
+    if pret < 0:
+        raise ValueError("nu exista pret negativ")
+    if len(locatie) != 4:
+        raise ValueError("locatia are mai mult sau mai putin de 4 caractere")
     obiect = gestionare_obiect(id, nume, descriere, pret, locatie)
-    return lista + [obiect]
-
-def adauga_obiect_undo_redo(id, nume, descriere, pret, locatie, lista, undo_list, redo_list):
-    '''
-    adauga un obiect intr-o lista
-    :param id: string
-    :param nume: string
-    :param descriere: string
-    :param pret: float
-    :param locatie: string
-    :param lista: lista de obiecte
-    :param undo_list: lista obiecte in urma efectuarii undo
-    :param redo_list: lista obiecte in urma efectuarii redo
-    :return: lista continand atat elemente vechi cat si noul obiect
-    '''
-    if get_by_id(id, lista) is not None:
-        raise ValueError("id existent")
-    obiect = gestionare_obiect(id, nume, descriere, pret, locatie)
-    undo_list.append(lista)
-    redo_list.clear()
     return lista + [obiect]
 
 def get_by_id(id, lista):
@@ -69,6 +51,10 @@ def modifica_obiect(id, nume, descriere, pret, locatie, lista):
     :param lista: lista de obiecte
     :return: lista modificata
     '''
+    if pret < 0:
+        raise ValueError("pretul nu poate fi negativ")
+    if len(locatie) !=4:
+        raise ValueError("locatia are mai mai mult sau mai putin de 4 caractere")
     lista_noua = []
     for obiect in lista:
         if get_id(obiect) == id:
@@ -77,3 +63,4 @@ def modifica_obiect(id, nume, descriere, pret, locatie, lista):
         else:
             lista_noua.append(obiect)
     return lista_noua
+

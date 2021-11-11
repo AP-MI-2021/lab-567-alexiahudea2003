@@ -1,49 +1,48 @@
 from Domain.inventar import to_string
-from Logic.CRUD import adauga_obiect, modifica_obiect
+from Logic.CRUD import adauga_obiect, modifica_obiect, sterge_obiect
+from UI.console import show_all
 
-def adaugare_obiect(id,nume,descriere,pret,locatie,lista):
-    try:
-        return adauga_obiect(id,nume,descriere,pret,locatie,lista)
-    except ValueError as ve:
-        print("Eroare: {}". format(ve))
-        return lista
 
-def modificare_obiect(id,nume,descriere,pret,locatie,lista):
-    try:
-        return modifica_obiect(id,nume,descriere,pret,locatie,lista)
-    except ValueError as ve:
-        print("Eroare: {}". format(ve))
-        return lista
-
-def afiseaza(lista):
-    for obiect in lista:
-        print(to_string(obiect))
-
-def ajutor():
-    print("Instructiuni:")
-    print("add - adaugare")
-    print("update - modificare")
-    print("show_all - afiseaza")
-    print("stop - oprire")
-
-def meniu():
-    lista = []
-    go = True
-    while go is True:
-        text = input("Introduceti comanda:")
-        comanda_lista = text.split("-")
-        for optiune in comanda_lista:
-            comanda = optiune.split(";")
-        if comanda[0] == "add":
-            lista = adaugare_obiect(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
-        elif comanda[0] == "update":
-            lista = modificare_obiect(comanda[1], comanda[2], comanda[3], comanda[4], comanda[5], lista)
-        elif comanda[0] == "show_all":
-            afiseaza(lista)
-        elif comanda[0] == "ajutor":
-            ajutor()
-        elif comanda[0] == "stop":
-            go = False
-        else:
-            print("Optiune gresita")
-meniu()
+def command_line_console(lista):
+    while True:
+        try:
+            print("comanda help - pentru ajutor")
+            comanda = input("Dati comanda")
+            if comanda == "help":
+                print("!comenzile se separa prin punct si virgula!")
+                print("add- pentru adaugare obiect")
+                print("update- pentru a modifica obiect")
+                print("delete- pentru a sterge obiect")
+                print("showall- pentru afisarea obiectelor")
+                print("stop- pentru a iesi")
+            elif comanda == "stop":
+                break
+            else:
+                executa = comanda.split(";")
+                for i in range(len(executa)):
+                    comanda_separata = executa[i].split(",")
+                    if comanda_separata[0] == "add":
+                        id = comanda_separata[1]
+                        nume = comanda_separata[2]
+                        descriere = comanda_separata[3]
+                        pret = float(comanda_separata[4])
+                        locatie = comanda_separata[5]
+                        lista = adauga_obiect(id, nume, descriere, pret, locatie, lista)
+                    elif comanda_separata[0] == "delete":
+                        id = comanda_separata[1]
+                        lista = sterge_obiect(id, lista)
+                        print("s-a sters un obiect")
+                    elif comanda_separata[0] == "update":
+                        id = comanda_separata[1]
+                        nume = comanda_separata[2]
+                        descriere = comanda_separata[3]
+                        pret = float(comanda_separata[4])
+                        locatie = comanda_separata[5]
+                        lista - modifica_obiect(id, nume, descriere, pret, locatie, lista)
+                        print("au fost modificate obiecte")
+                    elif comanda_separata[0] == "showall":
+                        show_all(lista)
+                    else:
+                        print("nu exista comanda")
+        except ValueError as ve:
+            print("Eroare: {}".format(ve))
