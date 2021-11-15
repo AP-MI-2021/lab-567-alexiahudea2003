@@ -110,13 +110,13 @@ def run_menu(lista):
         elif optiune == "4":
             lista = ui_mutare_obiect(lista, undo_list, redo_list)
         elif optiune == "5":
-            lista = ui_concatenare(lista, undo_list, redo_list)
+            ui_concatenare(lista, undo_list, redo_list)
         elif optiune == "6":
-            lista = ui_pret_max(lista)
+            ui_pret_max(lista)
         elif optiune == "7":
-            lista = ui_ordonare_obiecte(lista)
+            ui_ordonare_obiecte(lista)
         elif optiune == "8":
-            lista = ui_suma_preturi(lista)
+            ui_suma_preturi(lista)
         elif optiune == "u":
             if len(undo_list) > 0:
                 redo_list.append(lista)
